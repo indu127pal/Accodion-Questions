@@ -3,17 +3,20 @@ import {
     AiOutlineMinus,
     AiOutlinePlus
 } from 'react-icons/ai';
-const Question = ({ title, info }) => {
-    const [showInfo, setShowInfo] = useState(false);
+const Question = ({ id, title, info, activeId, toggleQue }) => {
+    const isActive = id === activeId;
     return (
         <article className='question'>
             <header>
                 <h5>{title}</h5>
-                <button className='question-btn' onClick={() => setShowInfo(!showInfo)}>
-                    {showInfo ? <AiOutlineMinus/> : <AiOutlinePlus/>}
+                <button 
+                    className='question-btn' 
+                    onClick={() => toggleQue(id)}
+                >
+                    {isActive ? <AiOutlineMinus/> : <AiOutlinePlus/>}
                 </button>
             </header>
-           {showInfo && <p>{info}</p>}
+           {isActive && <p>{info}</p>}
         </article>
     )
 }
